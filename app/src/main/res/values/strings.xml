@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Заметки</string>
+    <string name="title01">Заметка №1</string>
+    <string name="title02">Заметка №2</string>
+    <string name="title03">Заметка №3</string>
+
+    <string name="content01">Минск</string>
+    <string name="content02">Куала-Лумпур</string>
+    <string name="content03">Претория</string>
+</resources>
