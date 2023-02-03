@@ -72,11 +72,9 @@ public class ListOfNotesFragment extends Fragment {
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
-        // определяем, можно ли будет расположить рядом заметку в другом фрагменте
         isLandscape = getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE;
     }
 
-    // Сохраним текущую позицию (вызывается перед выходом из фрагмента)
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
         outState.putParcelable(NoteFragment.CURRENT_NOTE, currentNote);
@@ -87,15 +85,11 @@ public class ListOfNotesFragment extends Fragment {
     public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
         super.onViewStateRestored(savedInstanceState);
 
-        // Если это не первое создание, то восстановим текущую позицию
         if (savedInstanceState != null) {
-            // Восстановление текущей позиции
             currentNote = savedInstanceState.getParcelable(NoteFragment.CURRENT_NOTE);
         } else {
-            // Если восстановить не удалось, то сделаем объект с первым индексом
             currentNote = notes[0];
         }
-        // Если можно расположить рядом заметку, то сделаем это
         if (isLandscape) {
             showLandNote(currentNote);
         }
@@ -110,9 +104,7 @@ public class ListOfNotesFragment extends Fragment {
     }
 
     private void showLandNote(Note currentNote) {
-        // Создаём новый фрагмент с текущей позицией для вывода заметки
         NoteFragment fragment = NoteFragment.newInstance(currentNote);
-        // Выполняем транзакцию по замене фрагмента
         FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.container_for_notes, fragment)
@@ -120,12 +112,10 @@ public class ListOfNotesFragment extends Fragment {
                 .commit();
     }
 
-    // показать заметку в портретной ориентации
+
     private void showPortNote(Note currentNote) {
-        // Откроем вторую activity
         Intent intent = new Intent();
         intent.setClass(getActivity(), NoteActivity.class);
-        // и передадим туда параметры
         intent.putExtra(NoteFragment.CURRENT_NOTE, currentNote);
         startActivity(intent);
     }
