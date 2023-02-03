@@ -15,6 +15,6 @@
         android:id="@+id/container_for_notes"
         android:layout_width="0px"
         android:layout_height="match_parent"
-        android:layout_weight="1" />
+        android:layout_weight="1"/>
 
 </LinearLayout>
